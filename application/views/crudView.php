@@ -69,7 +69,7 @@
 			  	</form>
 		      </div>
 		      <div class="modal-footer">
-		        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+		        <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
 		        <button type="button" class="btn btn-primary">Save changes</button>
 		      </div>
 		    </div>
@@ -98,8 +98,49 @@
 			      <td><?php echo $row->ultah; ?></td>
 			      <td><?php echo $row->nohp; ?></td>
 			      <td><?php echo $row->bio; ?></td>
-			      <td><a href="<?php echo site_url('crudController/edit');?>/<?php echo $row->id;?>">Edit</a> | <a href="<?php echo site_url('crudController/delete');?>/<?php echo $row->id;?>">Delete</a></td>
+			      <td><a href="#" data-toggle="modal" data-target="#edit<?= $row->id ?>">Edit</a> | <a href="<?php echo site_url('crudController/delete');?>/<?php echo $row->id;?>">Delete</a></td>
 			    </tr>
+				<div class="modal fade" id="edit<?= $row->id ?>" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+					<div class="modal-dialog" role="document">
+						<div class="modal-content">
+						<div class="modal-header">
+							<h5 class="modal-title" id="exampleModalLabel">Edit Data</h5>
+							<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+							<span aria-hidden="true">&times;</span>
+							</button>
+						</div>
+						<div class="modal-body">
+							<form method="post" action="<?php echo site_url('crudController/create')?>">
+							<div class="form-group">
+								<label for="exampleInputEmail1">Nama Depan</label>
+								<input type="text" class="form-control" name="nama_depan" aria-describedby="emailHelp" placeholder="Nama Depan" value="<?= $row->nama_depan ?>">
+							</div>
+							<div class="form-group">
+								<label for="exampleInputEmail1">Nama Belakang</label>
+								<input type="text" class="form-control" name="nama_belakang" aria-describedby="emailHelp" placeholder="Nama Belakang" value="<?= $row->nama_belakang ?>">
+							</div>
+							<div class="form-group">
+								<label for="exampleInputEmail1">Tanggal Lahir</label>
+								<input type="date" class="form-control" name="ultah" aria-describedby="emailHelp" placeholder="" value="<?= $row->ultah ?>">
+							</div>
+							<div class="form-group">
+								<label for="exampleInputEmail1">No. HP</label>
+								<input type="text" class="form-control" name="nohp" aria-describedby="emailHelp" placeholder="No. HP" value="<?= $row->nohp ?>">
+							</div>
+							<div class="form-group">
+								<label for="exampleInputEmail1">Bio</label>
+								<input type="text" class="form-control" name="bio" aria-describedby="emailHelp" placeholder="Bio" value="<?= $row->bio ?>">
+							</div>
+							<button type="submit" class="btn btn-primary" value="save">Submit</button>
+							</form>
+						</div>
+						<div class="modal-footer">
+							<button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
+							<button type="button" class="btn btn-primary">Save changes</button>
+						</div>
+						</div>
+					</div>
+					</div>
 				<?php } ?>
   			</tbody>
 		</table>
